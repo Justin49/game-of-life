@@ -122,7 +122,7 @@ function logiqueDuJeu(grille) {
                     const x_cell = k + i;
                     const y_cell = l + j;
 
-                    if (x_cell >= 0 && y_cell >= 0 && x_cell < grille.length && y_cell < grille.length) {
+                    if (x_cell >= 0 && y_cell >= 0 && x_cell < LIGNE && y_cell < COLONNE) {
 
                         // j'incrémente le nombre de voisin de la cellule
                         nombreDeVoisin++;

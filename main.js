@@ -124,8 +124,13 @@ function logiqueDuJeu(grille) {
 
                     if (x_cell >= 0 && y_cell >= 0 && x_cell < LIGNE && y_cell < COLONNE) {
 
-                        // j'incrémente le nombre de voisin de la cellule
-                        nombreDeVoisin++;
+                        if(grille[x_cell][y_cell] === 1) {
+
+                            // j'incrémente le nombre de voisin de la cellule
+                            nombreDeVoisin++;
+                        }
+
+                        
                     }
                 }
             }
@@ -133,24 +138,24 @@ function logiqueDuJeu(grille) {
             // par rapport au nombre de voisin, on décide si une cellule va vivre ou mourrir
 
             // si la cellule du tableau est morte et qu'elle à 3 voisins
-            if(nouveauTableau[k][l] === 0 && nombreDeVoisin === 3) {
+            if(nouveauTableau[i][j] === 0 && nombreDeVoisin === 3) {
 
                 // la cellule va vivre
-                nouveauTableau[k][l] = 1;
+                nouveauTableau[i][j] = 1;
             }
 
             // si la cellule du tableau est vivante et qu'elle à strictement moins de 2 voisins
-            else if(nouveauTableau[k][l] === 1 && nombreDeVoisin < 2) {
+            else if(nouveauTableau[i][j] === 1 && nombreDeVoisin < 2) {
 
                 // la cellule va mourrir
-                nouveauTableau[k][l] = 0;
+                nouveauTableau[i][j] = 0;
             }
 
             // si la cellule du tableau est vivante et qu'elle à strictement plus de 3 voisins
-            else if(nouveauTableau[k][l] === 1 && nombreDeVoisin > 3) {
+            else if(nouveauTableau[i][j] === 1 && nombreDeVoisin > 3) {
 
                 // la cellule va mourrir
-                nouveauTableau[k][l] = 0;
+                nouveauTableau[i][j] = 0;
             }
 
         }
@@ -164,18 +169,19 @@ function logiqueDuJeu(grille) {
 // création de la boucle principale du jeu
 requestAnimationFrame(bouclePrincipale);
 
+ 
 function bouclePrincipale() {
+
 
     // dessine mon tableau
     dessinerTableau2D(grille);
 
     // j'appelle la fonction qui va contenir la logique du jeu et donc la nouvelle grille
     grille = logiqueDuJeu(grille);
- 
-  requestAnimationFrame(bouclePrincipale);
-  console.log("je passe par ici");
-}
 
+    requestAnimationFrame(bouclePrincipale);
+    console.log("je passe par ici");
+}
 
 
 
